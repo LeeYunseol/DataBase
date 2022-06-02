@@ -1,0 +1,13 @@
+1. ER다이어그램 WORKBECNCH을 열기
+2. FORWARD 엔지니어링의 입력 문구를 텍스트 '데이터베이스입력SQL'로 넣기
+    (저번 강의 영상 참고)
+3. MYSQL 스키마 하나를 'termproject'로 만들기 원하는 사용자를 만들고 권한 주기
+   (스키마 이름은 무조건 'termproject' 철자,소문자여부 틀리면안됨)
+
+4. cmd 켜서 mysql 적용
+	- mysql -u (사용자이름) -p
+	- use termproject;
+	
+5. 최종본 txt 파일 열어서 입력하기
+
+6. 코드 수정(비밀번호)

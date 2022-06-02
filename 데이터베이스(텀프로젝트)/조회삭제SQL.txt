@@ -1,0 +1,27 @@
+delete from 과제상세;
+delete from 상세특징;
+delete from 시험성적상세;
+delete from 상세강의스타일;
+delete from 특징;
+delete from 과제;
+delete from 강의스타일;
+delete from 시험성적;
+delete from 목록;
+delete from 교수;
+delete from 평가;
+delete from 강의;
+delete from 학생;
+
+select * from 과제상세;
+select * from 상세특징;
+select * from 시험성적상세;
+select * from 상세강의스타일;
+select * from 특징;
+select * from 과제;
+select * from 강의스타일;
+select * from 시험성적;
+select * from 목록;
+select * from 교수;
+select * from 평가;
+select * from 강의;
+select * from 학생

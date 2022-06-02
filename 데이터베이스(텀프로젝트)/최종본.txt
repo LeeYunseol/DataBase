@@ -1,0 +1,108 @@
+< 산업공학과 교수 테이블 >
+insert into 교수 values(11, '김보성', '산업공학과', '051-510-3355', '운영전략 및 경영과학 연구실', 'bosung.kim@pusan.ac.kr');
+insert into 교수 values(12, '류광열', '산업공학과', '051-510-2473', '차세대 생산시스템 / 디지털 제조혁신 기술 개발', 'kyryu@pusan.ac.kr');
+insert into 교수 values(13, '목학수', '산업공학과', '051-510-2426', '조립자동화 / 지속가능성 및 재제조', 'hsmok@pusan.ac.kr');
+insert into 교수 values(14, '박찬석', '산업공학과', '051-510-3354', '응용 통계 연구실', 'cp@pusan.ac.kr');
+insert into 교수 values(15, '배혜림', '산업공학과', '051-510-2733', 'Bigdata Analytics and Engineering 연구실', 'hrbae@pusan.ac.kr');
+insert into 교수 values(16, '윤원영', '산업공학과', '051-510-2421', '품질 및 신뢰성공학 연구실', 'wonyun@pusan.ac.kr');
+insert into 교수 values(17, '진상은', '산업공학과', '051-510-2420', '인간공학연구실', 'Iowa State University');
+insert into 교수 values(18, '홍순도', '산업공학과', '051-510-2331', '제조물류 연구실', 'soondo.hong@pusan.ac.kr');
+insert into 교수 values(19, '이상진', '산업공학과', '051-510-2332', '게임이론', 'sangjin.hong@pusan.ac.kr');
+
+< 컴퓨터공학과 교수 테이블>
+insert into 교수 values(21, '유영환', '컴퓨터공학과', ' 051-510-2485', ' 미래 네트워크 & 통신 연구실', 'ymomo@pusan.ac.kr');
+insert into 교수 values(22, '김정구', '컴퓨터공학과', ' 051-510-3733', '차세대방송 및 통신연구실', ' kimjg@pusan.ac.kr');
+insert into 교수 values(23, '차의영', '컴퓨터공학과', '051-510-2219', '신경회로망 및 로봇비전연구실', 'eycha@pusan.ac.kr');
+insert into 교수 values(24, '우균', '컴퓨터공학과', ' 051-510-3518', ' 프로그래밍언어연구실', 'syyang@pusan.ac.kr');
+insert into 교수 values(25, '채흥석', '컴퓨터공학과', ' 051-510-3517', ' 소프트웨어 품질 검증 및 테스트 자동화 연구실', 'hschae@pusan.ac.kr');
+insert into 교수 values(26, '탁성우', '컴퓨터공학과', ' 051-510-2387', ' 네트워크컴퓨팅연구실', 'swtak@pusan.ac.kr');
+insert into 교수 values(27, '김호원', '컴퓨터공학과', ' 051-510-1010', ' 정보보호 및 지능형 IoT 연구실', 'howonkim@pusan.ac.kr');
+insert into 교수 values(28, '최윤호', '컴퓨터공학과', ' 051-510-2781', ' 소프트웨어 및 시스템보안연구실', 'yhchoi@pusan.ac.kr');
+insert into 교수 values(29, '안성용', '컴퓨터공학과', ' 051-510-2422', ' 운영체제 및 클라우드 플랫폼 연구실', 'sungyong.ahn@pusan.ac.kr');
+insert into 교수 values(30, '정상화', '컴퓨터공학과', ' 051-510-2434', ' IoT 네트워크 시스템 연구실', 'shchung@pusan.ac.kr');
+insert into 교수 values(31, '백윤주', '컴퓨터공학과', ' 051-510-2599', '임베디드시스템연구실', 'yunju@pusan.ac.kr');
+insert into 교수 values(32, '권혁철', '컴퓨터공학과', ' 051-510-2218', '인공지능연구실', 'hckwon@pusan.ac.kr');
+insert into 교수 values(33, '염근혁', '컴퓨터공학과', ' 051-510-2475', '소프트웨어공학연구실', 'yeom@pusan.ac.kr');
+insert into 교수 values(34, '조환규', '컴퓨터공학과', ' 051-510-2283', ' 알고리즘, 데이터 공학 연구실', 'hgcho@pusan.ac.k');
+
+<강의>
+insert into 강의 values('BD16702', '프로그래밍원리와실습', '화목10시30분(100분)', 41, 4);
+insert into 강의 values('BD35572', 'C++프로그래밍과실습' , '월수 10시30분(100분)', 50, 4);
+insert into 강의 values('BD24210', '공학통계(1)', '월수 15시00분(75분)', 67, 3);
+insert into 강의 values('BD24216', '경영과학(1)', '화목 9시00분(75분)', 60, 3);
+insert into 강의 values('IE24211', '공학통계(2)', '월수 10시30분(75분)', 66, 3);
+INSERT INTO 강의 VALUES('BD21845', '인공지능', '월수 16시30분(75분)', 60, 3);
+INSERT INTO 강의 VALUES('BD24150', '데이터베이스', '화목 16시30분(75분)', 60, 3);
+INSERT INTO 강의 VALUES('BD33358', '데이터마이닝', '화목 16시30분(75분)', 60, 3);
+INSERT INTO 강의 VALUES('BD26050', '소프트웨어공학', '월수 09시00분(75분)', 60, 3);
+INSERT INTO 강의 VALUES('BD20330', '자료구조', '월수 13시30분(75분)', 60, 3);
+
+
+
+<목록>
+insert into 목록 values(23, 'BD16702', '차의영', '프로그래밍원리와실습');
+insert into 목록 values(24, 'BD35572', '우균','C++프로그래밍과실습');
+insert into 목록 values(19, 'BD24210', '이상진', '공학통계(1)');
+insert into 목록 values(11, 'BD24216', '김보성', '경영과학(1)');
+insert into 목록 values(19, 'BD24211', '이상진', '공학통계(2)');
+INSERT INTO 목록 VALUes(32,'BD21845', '권혁철', '인공지능');
+INSERT INTO 목록 VALUES(15,'BD24150', '배혜림', '데이터베이스');
+INSERT INTO 목록 VALUES(15,'BD33358', '배혜림', '데이터마이닝');
+INSERT INTO 목록 VALUES(33,'BD26050', '염근혁', '소프트웨어공학');
+INSERT INTO 목록 VALUES(34,'BD20330', '조환규', '자료구조');
+
+
+
+
+< 과제_특징_강의스타일_시험성적 >
+insert into 과제 values(11, 'BD24216');
+insert into 특징 values(11, 'BD24216');
+insert into 강의스타일 values(11, 'BD24216');
+insert into 시험성적 values(11, 'BD24216');
+
+insert into 과제 values(15, 'BD24150');
+insert into 특징 values(15, 'BD24150');
+insert into 강의스타일 values(15, 'BD24150');
+insert into 시험성적 values(15, 'BD24150');
+
+insert into 과제 values(23, 'BD16702');
+insert into 특징 values(23, 'BD16702');
+insert into 강의스타일 values(23, 'BD16702');
+insert into 시험성적 values(23, 'BD16702');
+
+insert into 과제 values(24, 'BD35572');
+insert into 특징 values(24, 'BD35572');
+insert into 강의스타일 values(24, 'BD35572');
+insert into 시험성적 values(24, 'BD35572');
+
+insert into 과제 values(33, 'BD26050');
+insert into 특징 values(33, 'BD26050');
+insert into 강의스타일 values(33, 'BD26050');
+insert into 시험성적 values(33, 'BD26050');
+
+insert into 과제 values(34, 'BD20330');
+insert into 특징 values(34, 'BD20330');
+insert into 강의스타일 values(34, 'BD20330');
+insert into 시험성적 values(34, 'BD20330');
+
+insert into 과제 values(32, 'BD21845');
+insert into 특징 values(32, 'BD21845');
+insert into 강의스타일 values(32, 'BD21845');
+insert into 시험성적 values(32, 'BD21845');
+
+insert into 과제 values(15, 'BD33358');
+insert into 특징 values(15, 'BD33358');
+insert into 강의스타일 values(15, 'BD33358');
+insert into 시험성적 values(15, 'BD33358');
+
+insert into 과제 values(19, 'BD24210');
+insert into 특징 values(19, 'BD24210');
+insert into 강의스타일 values(19, 'BD24210');
+insert into 시험성적 values(19, 'BD24210');
+
+insert into 과제 values(19, 'BD24211');
+insert into 특징 values(19, 'BD24211');
+insert into 강의스타일 values(19, 'BD24211');
+insert into 시험성적 values(19, 'BD24211');
+
+

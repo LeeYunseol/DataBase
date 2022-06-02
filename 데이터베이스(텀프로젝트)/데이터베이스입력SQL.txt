@@ -1,0 +1,344 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema termproject
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema termproject
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `termproject` DEFAULT CHARACTER SET utf8 ;
+USE `termproject` ;
+
+-- -----------------------------------------------------
+-- Table `termproject`.`학생`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `termproject`.`학생` (
+  `학번` INT NOT NULL,
+  `소속학과` VARCHAR(45) NULL,
+  `이름` VARCHAR(45) NULL,
+  PRIMARY KEY (`학번`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `termproject`.`강의`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `termproject`.`강의` (
+  `교과번호` VARCHAR(15) NOT NULL,
+  `강의이름` VARCHAR(45) NULL,
+  `강의시간` VARCHAR(45) NULL,
+  `인원` INT NULL,
+  `학점` INT NULL,
+  PRIMARY KEY (`교과번호`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `termproject`.`교수`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `termproject`.`교수` (
+  `교수번호` INT NOT NULL,
+  `성함` VARCHAR(45) NULL,
+  `소속학과` VARCHAR(45) NULL,
+  `전화번호` VARCHAR(45) NULL,
+  `연구실위치` VARCHAR(45) NULL,
+  `이메일주소` VARCHAR(45) NULL,
+  PRIMARY KEY (`교수번호`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `termproject`.`강의스타일`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `termproject`.`강의스타일` (
+  `교수_교수번호` INT NOT NULL,
+  `강의_교과번호` VARCHAR(15) NOT NULL,
+  PRIMARY KEY (`교수_교수번호`, `강의_교과번호`),
+  INDEX `fk_교수_has_강의_강의1_idx` (`강의_교과번호` ASC) VISIBLE,
+  INDEX `fk_교수_has_강의_교수_idx` (`교수_교수번호` ASC) VISIBLE,
+  CONSTRAINT `fk_교수_has_강의_교수`
+    FOREIGN KEY (`교수_교수번호`)
+    REFERENCES `termproject`.`교수` (`교수번호`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_교수_has_강의_강의1`
+    FOREIGN KEY (`강의_교과번호`)
+    REFERENCES `termproject`.`강의` (`교과번호`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `termproject`.`특징`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `termproject`.`특징` (
+  `교수_교수번호` INT NOT NULL,
+  `강의_교과번호` VARCHAR(15) NOT NULL,
+  PRIMARY KEY (`교수_교수번호`, `강의_교과번호`),
+  INDEX `fk_교수_has_강의1_강의1_idx` (`강의_교과번호` ASC) VISIBLE,
+  INDEX `fk_교수_has_강의1_교수1_idx` (`교수_교수번호` ASC) VISIBLE,
+  CONSTRAINT `fk_교수_has_강의1_교수1`
+    FOREIGN KEY (`교수_교수번호`)
+    REFERENCES `termproject`.`교수` (`교수번호`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_교수_has_강의1_강의1`
+    FOREIGN KEY (`강의_교과번호`)
+    REFERENCES `termproject`.`강의` (`교과번호`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `termproject`.`시험성적`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `termproject`.`시험성적` (
+  `교수_교수번호` INT NOT NULL,
+  `강의_교과번호` VARCHAR(15) NOT NULL,
+  PRIMARY KEY (`교수_교수번호`, `강의_교과번호`),
+  INDEX `fk_교수_has_강의_강의2_idx` (`강의_교과번호` ASC) VISIBLE,
+  INDEX `fk_교수_has_강의_교수1_idx` (`교수_교수번호` ASC) VISIBLE,
+  CONSTRAINT `fk_교수_has_강의_교수1`
+    FOREIGN KEY (`교수_교수번호`)
+    REFERENCES `termproject`.`교수` (`교수번호`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_교수_has_강의_강의2`
+    FOREIGN KEY (`강의_교과번호`)
+    REFERENCES `termproject`.`강의` (`교과번호`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `termproject`.`과제`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `termproject`.`과제` (
+  `교수_교수번호` INT NOT NULL,
+  `강의_교과번호` VARCHAR(15) NOT NULL,
+  PRIMARY KEY (`교수_교수번호`, `강의_교과번호`),
+  INDEX `fk_교수_has_강의_강의3_idx` (`강의_교과번호` ASC) VISIBLE,
+  INDEX `fk_교수_has_강의_교수2_idx` (`교수_교수번호` ASC) VISIBLE,
+  CONSTRAINT `fk_교수_has_강의_교수2`
+    FOREIGN KEY (`교수_교수번호`)
+    REFERENCES `termproject`.`교수` (`교수번호`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_교수_has_강의_강의3`
+    FOREIGN KEY (`강의_교과번호`)
+    REFERENCES `termproject`.`강의` (`교과번호`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `termproject`.`평가`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `termproject`.`평가` (
+  `강의_교과번호` VARCHAR(15) NOT NULL,
+  `학생_학번` INT NOT NULL,
+  PRIMARY KEY (`강의_교과번호`, `학생_학번`),
+  INDEX `fk_강의_has_학생_학생2_idx` (`학생_학번` ASC) VISIBLE,
+  INDEX `fk_강의_has_학생_강의2_idx` (`강의_교과번호` ASC) VISIBLE,
+  CONSTRAINT `fk_강의_has_학생_강의2`
+    FOREIGN KEY (`강의_교과번호`)
+    REFERENCES `termproject`.`강의` (`교과번호`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_강의_has_학생_학생2`
+    FOREIGN KEY (`학생_학번`)
+    REFERENCES `termproject`.`학생` (`학번`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `termproject`.`평가`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `termproject`.`평가` (
+  `강의_교과번호` VARCHAR(15) NOT NULL,
+  `학생_학번` INT NOT NULL,
+  PRIMARY KEY (`강의_교과번호`, `학생_학번`),
+  INDEX `fk_강의_has_학생_학생2_idx` (`학생_학번` ASC) VISIBLE,
+  INDEX `fk_강의_has_학생_강의2_idx` (`강의_교과번호` ASC) VISIBLE,
+  CONSTRAINT `fk_강의_has_학생_강의2`
+    FOREIGN KEY (`강의_교과번호`)
+    REFERENCES `termproject`.`강의` (`교과번호`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_강의_has_학생_학생2`
+    FOREIGN KEY (`학생_학번`)
+    REFERENCES `termproject`.`학생` (`학번`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `termproject`.`시험성적상세`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `termproject`.`시험성적상세` (
+  `시험성적_교수_교수번호` INT NOT NULL,
+  `시험성적_강의_교과번호` VARCHAR(15) NOT NULL,
+  `평가_학생_학번` INT NOT NULL,
+  `플러스여부` VARCHAR(45) NULL,
+  `시험출제스타일` VARCHAR(45) NULL,
+  `퀴즈여부` VARCHAR(45) NULL,
+  PRIMARY KEY (`시험성적_교수_교수번호`, `시험성적_강의_교과번호`, `평가_학생_학번`),
+  INDEX `fk_시험성적_has_평가_평가1_idx` (`평가_학생_학번` ASC) VISIBLE,
+  INDEX `fk_시험성적_has_평가_시험성적1_idx` (`시험성적_교수_교수번호` ASC, `시험성적_강의_교과번호` ASC) VISIBLE,
+  CONSTRAINT `fk_시험성적_has_평가_시험성적1`
+    FOREIGN KEY (`시험성적_교수_교수번호` , `시험성적_강의_교과번호`)
+    REFERENCES `termproject`.`시험성적` (`교수_교수번호` , `강의_교과번호`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_시험성적_has_평가_평가1`
+    FOREIGN KEY (`평가_학생_학번`)
+    REFERENCES `termproject`.`평가` (`학생_학번`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `termproject`.`상세강의스타일`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `termproject`.`상세강의스타일` (
+  `강의스타일_교수_교수번호` INT NOT NULL,
+  `강의스타일_강의_교과번호` VARCHAR(15) NOT NULL,
+  `평가_학생_학번` INT NOT NULL,
+  `교재` VARCHAR(45) NULL,
+  `강의방법` VARCHAR(45) NULL,
+  `출석체크` VARCHAR(45) NULL,
+  `원어` VARCHAR(45) NULL,
+  `강의스타일` VARCHAR(45) NULL,
+  PRIMARY KEY (`강의스타일_교수_교수번호`, `평가_학생_학번`, `강의스타일_강의_교과번호`),
+  INDEX `fk_강의스타일_has_평가_평가1_idx` (`평가_학생_학번` ASC) VISIBLE,
+  INDEX `fk_강의스타일_has_평가_강의스타일1_idx` (`강의스타일_교수_교수번호` ASC, `강의스타일_강의_교과번호` ASC) VISIBLE,
+  CONSTRAINT `fk_강의스타일_has_평가_강의스타일1`
+    FOREIGN KEY (`강의스타일_교수_교수번호` , `강의스타일_강의_교과번호`)
+    REFERENCES `termproject`.`강의스타일` (`교수_교수번호` , `강의_교과번호`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_강의스타일_has_평가_평가1`
+    FOREIGN KEY (`평가_학생_학번`)
+    REFERENCES `termproject`.`평가` (`학생_학번`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `termproject`.`과제상세`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `termproject`.`과제상세` (
+  `과제_교수_교수번호` INT NOT NULL,
+  `과제_강의_교과번호` VARCHAR(15) NOT NULL,
+  `평가_학생_학번` INT NOT NULL,
+  `텀프로젝트` VARCHAR(45) NULL,
+  `개인과제` VARCHAR(45) NULL,
+  PRIMARY KEY (`과제_교수_교수번호`, `과제_강의_교과번호`, `평가_학생_학번`),
+  INDEX `fk_과제_has_평가_평가1_idx` (`평가_학생_학번` ASC) VISIBLE,
+  INDEX `fk_과제_has_평가_과제1_idx` (`과제_교수_교수번호` ASC, `과제_강의_교과번호` ASC) VISIBLE,
+  CONSTRAINT `fk_과제_has_평가_과제1`
+    FOREIGN KEY (`과제_교수_교수번호` , `과제_강의_교과번호`)
+    REFERENCES `termproject`.`과제` (`교수_교수번호` , `강의_교과번호`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_과제_has_평가_평가1`
+    FOREIGN KEY (`평가_학생_학번`)
+    REFERENCES `termproject`.`평가` (`학생_학번`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `termproject`.`상세특징`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `termproject`.`상세특징` (
+  `특징_교수_교수번호` INT NOT NULL,
+  `특징_강의_교과번호` VARCHAR(15) NOT NULL,
+  `평가_학생_학번` INT NOT NULL,
+  `말빠르기` VARCHAR(45) NULL,
+  `목소리크기` VARCHAR(45) NULL,
+  `이해정도확인여부` VARCHAR(45) NULL,
+  `강의시간초과여부` VARCHAR(45) NULL,
+  `강의력` VARCHAR(45) NULL,
+  PRIMARY KEY (`특징_교수_교수번호`, `특징_강의_교과번호`, `평가_학생_학번`),
+  INDEX `fk_특징_has_평가_평가1_idx` (`평가_학생_학번` ASC) VISIBLE,
+  INDEX `fk_특징_has_평가_특징1_idx` (`특징_교수_교수번호` ASC, `특징_강의_교과번호` ASC) VISIBLE,
+  CONSTRAINT `fk_특징_has_평가_특징1`
+    FOREIGN KEY (`특징_교수_교수번호` , `특징_강의_교과번호`)
+    REFERENCES `termproject`.`특징` (`교수_교수번호` , `강의_교과번호`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_특징_has_평가_평가1`
+    FOREIGN KEY (`평가_학생_학번`)
+    REFERENCES `termproject`.`평가` (`학생_학번`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `termproject`.`목록`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `termproject`.`목록` (
+  `교수_교수번호` INT NOT NULL,
+  `강의_교과번호` VARCHAR(15) NOT NULL,
+  `교수_성함` VARCHAR(45) NOT NULL,
+  `강의_강의이름` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`교수_교수번호`, `강의_교과번호`, `강의_강의이름`, `교수_성함`),
+  INDEX `fk_교수_has_강의_강의5_idx` (`강의_교과번호` ASC) VISIBLE,
+  INDEX `fk_교수_has_강의_교수4_idx` (`교수_교수번호` ASC) VISIBLE,
+  CONSTRAINT `fk_교수_has_강의_교수4`
+    FOREIGN KEY (`교수_교수번호`)
+    REFERENCES `termproject`.`교수` (`교수번호`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_교수_has_강의_강의5`
+    FOREIGN KEY (`강의_교과번호`)
+    REFERENCES `termproject`.`강의` (`교과번호`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `termproject`.`목록`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `termproject`.`목록` (
+  `교수_교수번호` INT NOT NULL,
+  `강의_교과번호` VARCHAR(15) NOT NULL,
+  `교수_성함` VARCHAR(45) NOT NULL,
+  `강의_강의이름` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`교수_교수번호`, `강의_교과번호`, `강의_강의이름`, `교수_성함`),
+  INDEX `fk_교수_has_강의_강의5_idx` (`강의_교과번호` ASC) VISIBLE,
+  INDEX `fk_교수_has_강의_교수4_idx` (`교수_교수번호` ASC) VISIBLE,
+  CONSTRAINT `fk_교수_has_강의_교수4`
+    FOREIGN KEY (`교수_교수번호`)
+    REFERENCES `termproject`.`교수` (`교수번호`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_교수_has_강의_강의5`
+    FOREIGN KEY (`강의_교과번호`)
+    REFERENCES `termproject`.`강의` (`교과번호`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
